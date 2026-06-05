@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2026 Kritish Mohapatra
+# SPDX-License-Identifier: MIT
+
+"""CircuitPython library for controlling single-digit 7-segment displays."""
+
 import digitalio
 _DIGITS = {
     0:   (1, 1, 1, 1, 1, 1, 0),
@@ -107,5 +112,4 @@ class SevenSeg:
     def deinit(self):
         self.clear()
         for pin in self._pins:
-                pin.deinit()
-    
+            pin.deinit()
