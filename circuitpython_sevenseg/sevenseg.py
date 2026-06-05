@@ -113,3 +113,5 @@ class SevenSeg:
         self.clear()
         for pin in self._pins:
             pin.deinit()
+
+                                                                                                                                                   
