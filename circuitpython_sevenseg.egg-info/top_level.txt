@@ -1,2 +1,0 @@
-circuitpython_sevenseg
-dist
