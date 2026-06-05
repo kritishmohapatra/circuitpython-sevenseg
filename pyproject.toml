@@ -1,3 +1,27 @@
 [build-system]
 requires = ["setuptools", "wheel"]
-build-backend = "setuptools.backends.legacy:build"
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "circuitpython-sevenseg"
+version = "1.0.0"
+description = "A lightweight CircuitPython library for controlling single-digit 7-segment displays"
+readme = "README.md"
+authors = [{name = "Kritish Mohapatra", email = "kritishmohapatra06norisk@gmail.com"}]
+requires-python = ">=3.0"
+keywords = ["circuitpython", "seven-segment", "7-segment", "display", "iot", "embedded", "pico", "esp32"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: System :: Hardware",
+]
+[project.urls]
+Homepage = "https://github.com/kritishmohapatra/circuitpython-sevenseg"
+
+[tool.setuptools.packages.find]
+exclude = ["examples*", "tests*"]
+
+[tool.setuptools]
+license-files = []

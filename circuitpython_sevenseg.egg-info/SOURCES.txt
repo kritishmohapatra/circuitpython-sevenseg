@@ -1,0 +1,9 @@
+LICENSE
+README.md
+pyproject.toml
+circuitpython_sevenseg/__init__.py
+circuitpython_sevenseg/sevenseg.py
+circuitpython_sevenseg.egg-info/PKG-INFO
+circuitpython_sevenseg.egg-info/SOURCES.txt
+circuitpython_sevenseg.egg-info/dependency_links.txt
+circuitpython_sevenseg.egg-info/top_level.txt
