@@ -1,0 +1,178 @@
+# circuitpython-sevenseg
+
+A lightweight CircuitPython library for controlling single digit 7 segment displays (common cathode or common anode).
+
+Supports **digits, uppercase & lowercase letters, and symbols**  works on Raspberry Pi Pico, Adafruit Feather, Seeed XIAO ESP32-S3, and any CircuitPython-supported board.
+
+> CircuitPython port of [micropython-sevenseg](https://github.com/kritishmohapatra/micropython-sevenseg)
+
+---
+
+## Installation
+
+Copy the `circuitpython_sevenseg/` folder to the `lib/` directory on your `CIRCUITPY` drive:
+
+```
+CIRCUITPY/
+└── lib/
+    └── circuitpython_sevenseg/
+        ├── __init__.py
+        └── sevenseg.py
+```
+
+---
+
+## Pin Diagram
+
+```
+ ---a---
+|       |
+f       b
+|       |
+ ---g---
+|       |
+e       c
+|       |
+ ---d---   ● dp
+
+Pin order: [a, b, c, d, e, f, g, dp]
+```
+
+---
+
+## Quick Start
+
+```python
+import board
+import time
+from circuitpython_sevenseg import SevenSeg
+
+seg = SevenSeg(
+    pins=[board.GP2, board.GP3, board.GP4, board.GP5,
+          board.GP6, board.GP7, board.GP8, board.GP9],
+    common_anode=False
+)
+
+# Show a digit
+seg.show(5)
+
+# Show a letter
+seg.show('A')
+
+# Show with decimal point
+seg.show(3, dp=True)
+
+# Turn on decimal point only
+seg.dot(True)
+
+# Clear display
+seg.clear()
+
+# Release pins
+seg.deinit()
+```
+
+---
+
+## API Reference
+
+### `SevenSeg(pins, common_anode=False)`
+
+Initializes the display.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `pins` | list | 8 pin objects in order `[a, b, c, d, e, f, g, dp]` |
+| `common_anode` | bool | `True` for common anode, `False` for common cathode (default) |
+
+---
+
+### `show(char, dp=False)`
+
+Displays a character on the 7-segment display.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `char` | int or str | Digit `0–9` or supported character (see table below) |
+| `dp` | bool | Also turn on decimal point (default `False`) |
+
+Raises `ValueError` if character is not supported.
+
+---
+
+### `clear()`
+
+Turns off all segments including the decimal point.
+
+---
+
+### `dot(on=True)`
+
+Toggles the decimal point without affecting other segments.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `on` | bool | `True` = on, `False` = off (default `True`) |
+
+---
+
+### `deinit()`
+
+Releases all GPIO pins. Call when done to free resources.
+
+---
+
+## Supported Characters
+
+### Digits
+`0 1 2 3 4 5 6 7 8 9`
+
+### Uppercase Letters
+`A B C D E F G H I J L N O P Q R S T U Y Z`
+
+> K, M, V, W, X not supported — physically impossible on 7-segment display.
+
+### Lowercase Letters
+`a b c d e f g h i j l n o p q r s t u y`
+
+### Symbols
+`- _ . ! ? ' " [ ] = + ^ (space)`
+
+---
+
+## Wiring Example — Raspberry Pi Pico / Pico 2W
+
+| Segment | Pico Pin |
+|---------|----------|
+| a | GP2 |
+| b | GP3 |
+| c | GP4 |
+| d | GP5 |
+| e | GP6 |
+| f | GP7 |
+| g | GP8 |
+| dp | GP9 |
+
+---
+
+## Examples
+
+| File | Description |
+|------|-------------|
+| `sevenseg_simpletest.py` | Basic 0–9 counter |
+| `sevenseg_all_chars.py` | All supported characters |
+
+
+---
+
+## License
+
+MIT License © 2026 Kritish Mohapatra
+
+---
+
+## Author
+
+**Kritish Mohapatra**
+- GitHub: [@kritishmohapatra](https://github.com/kritishmohapatra)
+- MicroPython version: [micropython-sevenseg](https://github.com/kritishmohapatra/micropython-sevenseg)

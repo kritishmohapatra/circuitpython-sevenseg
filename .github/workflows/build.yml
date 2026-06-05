@@ -1,0 +1,34 @@
+name: Build CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+
+    - name: Install circuitpython-build-tools
+      run: pip install circuitpython-build-tools
+
+    - name: Build bundle
+      run: circuitpython-build-bundles --filename_prefix circuitpython-sevenseg --library_location .
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+
+    - name: Install pylint
+      run: pip install pylint
+
+    - name: Run pylint
+      run: pylint circuitpython_sevenseg/
